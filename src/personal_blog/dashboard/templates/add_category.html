@@ -1,0 +1,75 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Category{% endblock %}
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Add Category</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Add Category</li>
+            </ol>
+            <form action={% url "add_category" %} method="post" id="add_category">
+                {% csrf_token %}
+            <div class="row">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Category</label>
+                    <input type="Text" name="category" class="form-control" id="exampleFormControlInput1" placeholder="category">
+                </div>
+                <div class="mb-3">
+                    <button form="add_category" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>category</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>category</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for c in categories %}
+                        <tr>
+                            <td>{{ c.id }}</td>
+                            <td>{{ c.category_name}}</td>
+                            <td><button class="btn btn-primary">edit</button></td>
+                            <td><button class="btn btn-danger">delete</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+{% endblock %}

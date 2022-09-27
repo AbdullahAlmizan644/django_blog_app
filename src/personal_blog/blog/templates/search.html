@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+{% load static %}
+{% block content %}
+
+<div id="colorlib-main">
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-xl-8 py-5 px-md-5">
+                    <h2 class="mb-4">{{total}} Search result found  for <span style="color: rgb(0, 255, 85);">"{{ search }}"</span> </h2>
+                    <div class="row pt-md-4">
+                        {% for post in result %}
+                        <div class="col-md-12">
+                            <div class="blog-entry ftco-animate d-md-flex">
+                                <!-- <a href="single.html" class="img img-2"
+									style="background-image: url(images/mizan.jpg);"></a> -->
+                                <div class="text text-2 pl-md-4">
+                                    <h3 class="mb-2"><a href={% url "single" post.id %}>{{ post.title }}</a></h3>
+                                    <div class="meta-wrap">
+                                        <p class="meta">
+                                            <span><i class="icon-calendar mr-2"></i>{{ post.date}}</span>
+                                            <span><a href="single.html"><i
+                                                        class="icon-folder-o mr-2"></i>{{post.category_name}}</a></span>
+                                            <!-- <span><i class="icon-comment2 mr-2"></i>5 Comment</span> -->
+                                        </p>
+                                    </div>
+                                    <!-- <p class="mb-4">{{ post.description|slice:30|safe}}</p> -->
+                                    <p><a href={% url "single" post.id %} class="btn-custom">Read More <span
+                                                class="ion-ios-arrow-forward"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div><!-- END-->
+
+      
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div><!-- END COLORLIB-MAIN -->
+</div><!-- END COLORLIB-PAGE -->
+
+
+
+{% endblock %}
